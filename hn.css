@@ -1,11 +1,11 @@
 body {
-	background: rgba(0,0,0,0.05);
+	background: #666;
 	margin: 0;
 }
 
 table td,	
 table {
-	background: #fff;
+	background: #F5F3ED;
 }
 
 
@@ -181,24 +181,23 @@ body > center > table {
 }
 
 td.title {
-	padding: 8px 0 0px;
+	padding: 0px 0 0px;
 	position: relative;
 	background: none;
 }
 
 td.title a {
 	font-size: 14px;
-	letter-spacing: -1px;
-	color: rgb(0, 105, 173);
+	color: #D9853B;
 }
 
 td.title a:hover {
-	color: #2991D6;
+	color: #74AFAD;
 }
 
 
 td.title a:visited {
-	color: #87C1E8;
+	color: #558C89;
 }
 
 td.title .comhead a {
@@ -207,13 +206,14 @@ td.title .comhead a {
 }
 
 td.title:first-child {
-	font-size: 20px;
+	font-size: 14px;
 	color: #bbb;
 	min-width: 33px;
 }
 
 td.subtext {
 	font-size: 10px;
+	padding-top: 4px;
 }
 
 td.subtext a:hover {
