@@ -5,7 +5,7 @@ body {
 
 table td,	
 table {
-	background: #F5F3ED;
+	background: #faf9f5;
 }
 
 
@@ -188,7 +188,7 @@ td.title {
 
 td.title a {
 	font-size: 14px;
-	color: #D9853B;
+	color: #000;
 }
 
 td.title a:hover {
