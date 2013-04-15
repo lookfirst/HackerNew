@@ -35,6 +35,7 @@ var hn = {
 				hn.createQuickReply();
 				break;
 			default:
+			        hn.createFilterMenu();
 				$('html').addClass('news');
 		}
 	},
@@ -45,9 +46,10 @@ var hn = {
 	},
 	
 	replaceImages: function(){
-		$("img[src='http://ycombinator.com/images/y18.gif']").attr('src', chrome.extension.getURL("/images/icon.png"));
-		$("img[src='http://ycombinator.com/images/grayarrow.gif']").attr('src', chrome.extension.getURL("/images/arrow-up.png")).show();
-		$("img[src='http://ycombinator.com/images/graydown.gif']").attr('src', chrome.extension.getURL("/images/arrow-down.png")).show();
+		$("img[src='y18.gif']").attr('src', chrome.extension.getURL("/images/icon.png"));
+		$("img[src='grayarrow.gif']").attr('src', chrome.extension.getURL("/images/arrow-up.png")).show();
+		$("img[src='graydown.gif']").attr('src', chrome.extension.getURL("/images/arrow-down.png")).show();
+        $("link[rel='shortcut icon']").attr('href', chrome.extension.getURL("/images/icon.png"));
 	},
 	
 	createProfileBubble: function(){
@@ -260,9 +262,10 @@ var hn = {
 		
 		if ($button.hasClass('collapsed')) {
 			var uniq = $button.data('uniq');
-			$('.hidden-reply-' + uniq).fadeIn().removeClass();
-			$button.text('collapse')
+			$('.hidden-reply-' + uniq).show().removeClass();
+			$button.text('[-]')
 			       .removeClass('collapsed');
+            $button.parent().parent().parent().children(".comment, p").show();
 			return;
 		}
 		
@@ -278,7 +281,7 @@ var hn = {
 					count++;
 					
 					// find parent tr, several levels down
-					$(this).parent().parent().parent().parent().parent().fadeOut().addClass('hidden-reply-' + uniq);
+					$(this).parent().parent().parent().parent().parent().hide().addClass('hidden-reply-' + uniq);
 					return true;
 				}
 				
@@ -286,8 +289,9 @@ var hn = {
 				return false;
 			}
 		});
+        $button.parents("td.default").children("span.comment, p").hide();
 		
-		$button.text('show ' + count + ' replies')
+		$button.text("[+]")
 		       .addClass('collapsed')
 		       .data('uniq', uniq);
 	},
@@ -468,7 +472,7 @@ var hn = {
 			var $wrapper = $(this).parent();
 			var $meta = $wrapper.find('span.comhead');
 			
-			$meta.append('<a class="toggle-replies">collapse<a>');
+			$meta.prepend('<a class="toggle-replies">[-]<a> ');
 			
 		});
 		
@@ -482,7 +486,7 @@ var hn = {
 		$('span.comment').each(function(){
 			var $wrapper = $(this).parent();
 			var $meta = $wrapper.find('span.comhead');
-			var $username = $('a', $meta).first();
+			var $username = $('a', $meta).eq(2);
 			var username = $username.text();
 			
 			// following
